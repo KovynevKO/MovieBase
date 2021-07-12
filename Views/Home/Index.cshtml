@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MovieBase.Models.Movie>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Movie DataBase";
+}
+
+<table class="table">
+    <tr><td>Имя</td><td>Год</td></tr>
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>@movie.Name</td>
+            <td>@movie.ReleaseYear</td>
+            <td>@movie.Description</td>
+        </tr>
+    }
+</table>

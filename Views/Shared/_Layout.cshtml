@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/main.css">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <a asp-action="Create">Logo</a>
+        <nav>
+            <ul>
+                <li>Поиск</li>
+                @if (ViewBag.IsUserInRole)
+                {
+                    <a asp-action="Create">Сообщения</a>
+                    <a asp-action="Create">Мой рейтинг</a>
+                    <a asp-action="Create">Профиль</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Войти</a>
+                }
+
+            </ul>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
