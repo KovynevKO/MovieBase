@@ -1,0 +1,25 @@
+﻿@model Movie
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Movie DataBase";
+}
+
+<div>
+    <div>
+        @Model.Name
+        @Model.ReleaseYear
+        @Model.Description
+        @foreach(var c in Model.Countries)
+            {
+                @c.FullName
+            }
+        @foreach(var g in Model.Genres)
+            {
+                @g.Name
+            }
+        @if (Model.ServicesRating?.Imdb != null)
+            @Model.ServicesRating.Imdb
+
+    </div>
+</div>

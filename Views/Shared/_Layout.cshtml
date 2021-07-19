@@ -4,26 +4,30 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/header.css">
     <title>@ViewBag.Title</title>
 </head>
 <body>
     <header>
-        <a asp-action="Create">Logo</a>
-        <nav>
-            <ul>
-                <li>Поиск</li>
-                @if (ViewBag.IsUserInRole)
-                {
-                    <a asp-action="Create">Сообщения</a>
-                    <a asp-action="Create">Мой рейтинг</a>
-                    <a asp-action="Create">Профиль</a>
-                }
-                else
-                {
-                    <a asp-controller="Account" asp-action="Login">Войти</a>
-                }
 
-            </ul>
+        <nav>
+            <a asp-action="Index">Logo</a>
+
+            <input type="text" />
+            <a asp-action="">Поиск</a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-action="Index" class="RedButtons">Сообщения</a>
+                <a asp-action="Index" class="RedButtons">Мой рейтинг</a>
+                <a asp-action="Index" class="RedButtons">@User.Identity.Name</a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login">Войти</a>
+            }
+
+
         </nav>
     </header>
     <div>

@@ -17,5 +17,6 @@ namespace MovieBase.Models
         public List<Country> Countries { get; set; } = new List<Country>();
         public List<Image> Images { get; set; } = new List<Image>();
         public List<MovieReward> MovieRewards { get; set; } = new List<MovieReward>();
+        public List<Evaluation> Evaluations { get; set; } = new List<Evaluation>();
     }
 }

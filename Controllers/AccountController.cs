@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieBase.Models;
+using MovieBase.Models.Repository;
 using MovieBase.ViewModels.Login;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,12 @@ namespace MovieBase.Controllers
 {
     public class AccountController : Controller
     {
-        private ApplicationDbContext db;
-        public AccountController(ApplicationDbContext context)
+        private IAccountRepository accountRepository;
+        public AccountController(IAccountRepository repository)
         {
-            db = context;
+            this.accountRepository = repository;
         }
-
+ 
         [HttpGet]
         public IActionResult Login()
         {
@@ -33,7 +34,7 @@ namespace MovieBase.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            User user = await db.Users.FirstOrDefaultAsync(u => (u.Email == model.Login || u.Login == model.Login) && u.Password == model.Password);
+            User user = await accountRepository.GetUserByLogIn(model.Login, model.Password);
             if (user != null)
             {
                 await Authenticate(user);
@@ -52,19 +53,20 @@ namespace MovieBase.Controllers
 
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
             if (ModelState.IsValid)
             {  
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                User user = await accountRepository.GetUserByEmail(model.Email);
                 if (user == null)
                 {
                     user = new User { Email = model.Email, Login = model.Login, Password = model.Password, Role = "User" };
-                    db.Users.Add(user);
-                    await db.SaveChangesAsync();
 
+                    await accountRepository.Add(user);
+                    await accountRepository.Save();
                     await Authenticate(user); 
 
                     return RedirectToAction("Index", "Home");

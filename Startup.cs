@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieBase.Models;
+using MovieBase.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,9 @@ namespace MovieBase
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
+
+            services.AddTransient<IMovieRepository, MsSqlMovieRepository>();
+            services.AddTransient<IAccountRepository, MsSqlAccountRepository>();
 
             services.AddControllersWithViews();
         }

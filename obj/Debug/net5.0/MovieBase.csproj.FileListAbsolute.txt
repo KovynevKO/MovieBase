@@ -68,3 +68,4 @@ D:\Projects\Visual Studio\NET\MovieBase\MovieBase\obj\Debug\net5.0\Razor\Views\_
 D:\Projects\Visual Studio\NET\MovieBase\MovieBase\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Projects\Visual Studio\NET\MovieBase\MovieBase\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 D:\Projects\Visual Studio\NET\MovieBase\MovieBase\obj\Debug\net5.0\Razor\Views\Account\Registration.cshtml.g.cs
+D:\Projects\Visual Studio\NET\MovieBase\MovieBase\obj\Debug\net5.0\Razor\Views\Home\Movie.cshtml.g.cs

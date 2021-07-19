@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MovieBase.Models;
+using MovieBase.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,20 +13,21 @@ namespace MovieBase.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db;
-        public HomeController(ApplicationDbContext context)
+        private IMovieRepository movieRepository;
+        public HomeController(IMovieRepository repository)
         {
-            db = context;
-            
+            movieRepository = repository;
         }
 
         public IActionResult Index()
         {
-            ViewBag.IsUserInRole = User?.Identity?.IsAuthenticated;
-            if (ViewBag.IsUserInRole == null)
-                ViewBag.IsUserInRole = false;
+            return View(movieRepository.GetMovies());
+        }
 
-            return View(db.Movies.ToList());
+        public async Task<IActionResult> Movie(int id)
+        {
+            Movie movie = await movieRepository.GetMovieFullInfo(id);
+            return View(movie);
         }
 
     }

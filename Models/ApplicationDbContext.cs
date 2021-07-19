@@ -78,6 +78,11 @@ namespace MovieBase.Models
                 .HasMany(p => p.MovieRewards)
                 .WithOne(t => t.Movie)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Movie>()
+                .HasMany(p => p.Evaluations)
+                .WithOne(t => t.Movie)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         private void OnEmployeeCreating(ModelBuilder modelBuilder)

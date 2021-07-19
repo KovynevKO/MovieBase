@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieBase.Models.Movie>
+﻿@model IEnumerable<Movie>
 @{
     Layout = "_Layout";
     ViewBag.Title = "Movie DataBase";
@@ -9,7 +9,7 @@
     @foreach (var movie in Model)
     {
         <tr>
-            <td>@movie.Name</td>
+            <td><a asp-action="Movie" asp-route-id="@movie.Id">@movie.Name</a></td>
             <td>@movie.ReleaseYear</td>
             <td>@movie.Description</td>
         </tr>

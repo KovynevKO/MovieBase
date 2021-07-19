@@ -1,0 +1,42 @@
+﻿nav {
+    padding: 20px;
+    font-size: 25px;
+
+    a {
+        padding: 10px;
+        background: green;
+        color: black;
+        text-decoration: none;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    a:hover {
+        background: blue;
+    }
+
+    input[type="text"] {
+        height: 45px;
+        font-size: 35px;
+        width: 20%;
+        border: 1px solid black;
+        border-radius: 10px;
+        background: white;
+        padding-left: 10px;
+        outline: none;
+    }
+
+    .rightSide {
+        float: right;
+        margin-left: 5px;
+    }
+
+    .RedButtons {
+        @extend .rightSide;
+        background: red;
+    }
+
+    .RedButtons:hover {
+        background: green;
+    }
+}
